@@ -1,0 +1,83 @@
+[user]
+	name = Robert Bartl
+	email = robert@edv-bartl.at
+[core]
+	excludesfile = /Users/rbartl/.gitignore_global
+[difftool "sourcetree"]
+	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+	trustExitCode = true
+[push]
+	default = matching
+
+
+[branch]
+	autosetupmerge = true
+[color]
+    ui = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+#[checkstyle]
+#	jar = /dir/to/checkstyle/jar/checkstyle-5.6-all.jar
+#	config = /dir/to/checkstyle/config/checkstyle.xml
+
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    ba = branch -a
+    co = checkout
+    df = diff
+    lg = log -p
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lotree = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    loshort = log --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    slog = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    ls = ls-files
+
+    up = pull --ff-only --all -p
+lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+lg = !"git lg1"
+    
+    rollback = reset --soft HEAD^
+    files = diff-tree --no-commit-id --name-only -r
+    btree = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges --abbrev-commit
+    
+    incoming = "!git remote update -p; git log ..@{u}"
+    outgoing = log @{u}.. 
+    unstage = reset HEAD --
+    resetall = reset --hard
+    actrev = rev-parse HEAD
+    
+    suboutgoing = submodule foreach git log @{u}.. 
+
+[mergetool]
+	trustExitCode = false
+[diff]
+	tool = diffmerge
+
+[difftool "diffmerge"]
+	trustExitCode = true
+	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge \"$LOCAL\" \"$REMOTE\"
+
+
+[merge]
+	tool = diffmerge
+[mergetool "diffmerge"]
+	trustExitCode = true
+	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\"         \"$LOCAL\" \"$BASE\" \"$REMOTE\"
